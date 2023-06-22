@@ -1,5 +1,14 @@
+import { Link } from 'react-router-dom';
 import PageNav from '../components/PageNav';
 import styles from './Homepage.module.css';
+
+const styledButton = {
+  color: '#242a2e',
+  textDecoration: 'none',
+  backgroundColor: '#00c46a',
+  padding: '0.4rem 1rem',
+  borderRadius: '7px',
+};
 
 export default function Homepage() {
   return (
@@ -15,6 +24,12 @@ export default function Homepage() {
           A world map that tracks your footsteps into every city you can think of. Never forget your wonderful
           experiences, and show your friends how you have wandered the world.
         </h2>
+        <Link
+          to="app"
+          className={styles.btn}
+        >
+          Go to app Page
+        </Link>
       </section>
     </main>
   );

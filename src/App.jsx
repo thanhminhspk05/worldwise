@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import City from './components/City';
 import CityList from './components/CityList';
 import CountryList from './components/CountryList';
+import Form from './components/Form';
 import AppLayout from './pages/AppLayout';
 import HomePage from './pages/HomePage';
 import Login from './pages/Login';
@@ -42,7 +43,7 @@ function App() {
           element={<HomePage />}
         />
         <Route
-          path="product/:id"
+          path="product"
           element={<Product />}
         />
         <Route
@@ -60,9 +61,9 @@ function App() {
           <Route
             index
             element={
-              <CityList
-                cities={cities}
-                isLoading={isLoading}
+              <Navigate
+                replace
+                to="cities"
               />
             }
           />
@@ -95,8 +96,8 @@ function App() {
             }
           />
           <Route
-            path="from"
-            element={<CityList />}
+            path="form"
+            element={<Form />}
           />
         </Route>
         <Route

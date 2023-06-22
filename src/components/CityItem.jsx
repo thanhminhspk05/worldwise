@@ -4,12 +4,18 @@ import { flagemojiToPNG, formatDate } from '../utils';
 import styles from './CityItem.module.css';
 
 function CityItem({ city }) {
-  const { cityName, emoji, date, id } = city;
+  const {
+    cityName,
+    emoji,
+    date,
+    id,
+    position: { lat, lng },
+  } = city;
 
   return (
     <li>
       <Link
-        to={`${id}`}
+        to={`${id}?lat=${lat}&lng=${lng}`}
         className={styles.cityItem}
       >
         <span className={styles.emoji}>{flagemojiToPNG(emoji)}</span>
