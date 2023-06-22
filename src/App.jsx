@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
+import City from './components/City';
 import CityList from './components/CityList';
 import CountryList from './components/CountryList';
 import AppLayout from './pages/AppLayout';
@@ -41,7 +42,7 @@ function App() {
           element={<HomePage />}
         />
         <Route
-          path="product"
+          path="product/:id"
           element={<Product />}
         />
         <Route
@@ -74,6 +75,16 @@ function App() {
               />
             }
           />
+          <Route
+            path="cities/:id"
+            element={
+              <City
+                cities={cities}
+                isLoading={isLoading}
+              />
+            }
+          />
+
           <Route
             path="countries"
             element={
