@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { flagemojiToPNG } from '../utils';
 
 const BASE_URL = 'http://localhost:9000';
 
@@ -15,7 +16,10 @@ const CitiesProvider = ({ children }) => {
         setIsLoading(true);
         const res = await fetch(`${BASE_URL}/cities`);
         const data = await res.json();
-        setCities(data);
+        console.log(data);
+        const newData = data.map((city) => ({ ...city, emoji: flagemojiToPNG(city.emoji) }));
+        console.log(newData);
+        setCities(newData);
       } catch (err) {
         alert('There was an error loading data...');
       } finally {

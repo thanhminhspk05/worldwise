@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { flagemojiToPNG, formatDate } from '../utils';
+import { formatDate } from '../utils';
 import styles from './CityItem.module.css';
 import { useCities } from '../contexts/CitiesContext';
 
@@ -20,7 +20,7 @@ function CityItem({ city }) {
         to={`${id}?lat=${lat}&lng=${lng}`}
         className={`${styles.cityItem} ${id === currentCity.id ? styles['cityItem--active'] : ''}`}
       >
-        <span className={styles.emoji}>{flagemojiToPNG(emoji)}</span>
+        <span className={styles.emoji}>{emoji}</span>
         <h3 className={styles.name}>{cityName}</h3>
         <time className={styles.date}>{formatDate(date)}</time>
         <button className={styles.deleteBtn}>&times;</button>

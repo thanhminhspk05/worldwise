@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCities } from '../contexts/CitiesContext';
 import styles from './City.module.css';
-import { flagemojiToPNG, formatDate } from '../utils';
+import { formatDate } from '../utils';
 import Spinner from './Spinner';
 import BackButton from './BackButton';
 
@@ -22,7 +22,7 @@ function City() {
       <div className={styles.row}>
         <h6>City name</h6>
         <h3>
-          <span>{emoji && flagemojiToPNG(emoji)}</span> {cityName}
+          <span>{emoji}</span> {cityName}
         </h3>
       </div>
 
