@@ -16,9 +16,7 @@ const CitiesProvider = ({ children }) => {
         setIsLoading(true);
         const res = await fetch(`${BASE_URL}/cities`);
         const data = await res.json();
-        console.log(data);
         const newData = data.map((city) => ({ ...city, emoji: flagemojiToPNG(city.emoji) }));
-        console.log(newData);
         setCities(newData);
       } catch (err) {
         alert('There was an error loading data...');
@@ -35,7 +33,8 @@ const CitiesProvider = ({ children }) => {
       setIsLoading(true);
       const res = await fetch(`${BASE_URL}/cities/${id}`);
       const data = await res.json();
-      setCurrentCity(data);
+      const newData = { ...data, emoji: flagemojiToPNG(data.emoji) };
+      setCurrentCity(newData);
     } catch (err) {
       alert('There was an error loading data...');
     } finally {
