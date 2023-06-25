@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 import City from './components/City';
@@ -11,7 +11,7 @@ import Login from './pages/Login';
 import PageNotFound from './pages/PageNotFound';
 import Pricing from './pages/Pricing';
 import Product from './pages/Product';
-import { CitiesProvider } from './contexts/CitiesContext';
+import { CitiesProvider, useCities } from './contexts/CitiesContext';
 
 function App() {
   return (
