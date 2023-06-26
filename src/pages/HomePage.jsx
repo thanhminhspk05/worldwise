@@ -28,7 +28,7 @@ export default function Homepage() {
           to="app"
           className={styles.btn}
         >
-          Go to app Page
+          START TRACKING NOW
         </Link>
       </section>
     </main>
