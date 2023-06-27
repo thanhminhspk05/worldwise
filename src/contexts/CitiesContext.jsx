@@ -9,20 +9,21 @@ const initialState = {
   cities: [],
   isLoading: false,
   currentCity: {},
+  error: '',
 };
 
 const reducer = (state, action) => {
   switch (action.type) {
     case 'loading':
-      return { ...state, isLoading: !state.isLoading };
-    case 'setCities':
+      return { ...state, isLoading: true };
+    case 'cities/loaded':
+      return { ...state, isLoading: false, cities: action.payload };
+    case 'cities/created':
       return { ...state, cities: action.payload };
-    case 'setCurrentCity':
+    case 'cities/deleted':
       return { ...state, currentCity: action.payload };
-    case 'deleteCity':
-      return { ...state, cities: state.cities.filter((city) => city.id !== action.payload) };
     default:
-      return state;
+      throw new Error('Invalid action');
   }
 };
 
@@ -31,17 +32,15 @@ const CitiesProvider = ({ children }) => {
   const { cities, isLoading, currentCity } = state;
 
   useEffect(() => {
+    dispatch({ type: 'loading' });
     const fetchCities = async () => {
       try {
-        dispatch({ type: 'loading' });
         const res = await fetch(`${BASE_URL}/cities`);
         const data = await res.json();
         const newData = data.map((city) => ({ ...city, emoji: flagemojiToPNG(city.emoji) }));
-        dispatch({ type: 'setCities', payload: newData });
+        dispatch({ type: 'cities/loaded', payload: newData });
       } catch (err) {
         alert('There was an error loading data...');
-      } finally {
-        dispatch({ type: 'loading' });
       }
     };
 
