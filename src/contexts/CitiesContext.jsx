@@ -20,9 +20,9 @@ const reducer = (state, action) => {
     case 'city/loaded':
       return { ...state, isLoading: false, currentCity: action.payload };
     case 'cities/created':
-      return { ...state, isLoading: false, cities: action.payload };
+      return { ...state, isLoading: false, cities: [...state.cities, action.payload] };
     case 'cities/deleted':
-      return { ...state, currentCity: action.payload };
+      return { ...state, isLoading: false, cities: state.cities.filter((city) => city.id !== action.payload) };
     case 'rejected':
       return { ...state, isLoading: false, error: action.payload };
     default:
@@ -50,6 +50,7 @@ const CitiesProvider = ({ children }) => {
   }, []);
 
   const getCity = async (id) => {
+    if (id === currentCity.id) return; 
     dispatch({ type: 'loading' });
     try {
       const res = await fetch(`${BASE_URL}/cities/${id}`);
@@ -72,20 +73,21 @@ const CitiesProvider = ({ children }) => {
         },
       });
 
-      dispatch({ type: 'setCurrentCity', payload: newCity });
+      dispatch({ type: 'cities/created', payload: newCity });
     } catch (err) {
       dispatch({ type: 'rejected', payload: 'There was an error loading data...' });
     }
   };
 
   const deleteCity = async (id) => {
+    dispatch({ type: 'loading' });
     try {
       await fetch(`${BASE_URL}/cities/${id}`, {
         method: 'DELETE',
       });
-      dispatch({ type: 'deleteCity', payload: id });
+      dispatch({ type: 'cities/deleted', payload: id });
     } catch (err) {
-      alert('There was an error loading data...');
+      dispatch({ type: 'rejected', payload: 'There was an error delete data...' });
     }
   };
 

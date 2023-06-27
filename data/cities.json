@@ -1,28 +1,76 @@
 {
   "cities": [
     {
-      "cityName": "Gujarat",
-      "country": "India",
-      "emoji": "IN",
-      "date": "2023-06-27T03:25:47.274Z",
+      "cityName": "Yunnan Sheng",
+      "country": "China",
+      "emoji": "CN",
+      "date": "2023-06-27T07:45:40.987Z",
       "notes": "",
       "position": {
-        "lat": "24.186847428521244",
-        "lng": "72.02636718750001"
+        "lat": "23.504730418021627",
+        "lng": "100.3906600650808"
       },
-      "id": 73930394
+      "id": "id18"
     },
     {
-      "cityName": "Changwat Uttaradit",
-      "country": "Thailand",
-      "emoji": "TH",
-      "date": "2023-06-27T03:43:40.304Z",
+      "cityName": "Khyber Pakhtunkhwa",
+      "country": "Pakistan",
+      "emoji": "PK",
+      "date": "2023-06-27T07:46:42.491Z",
       "notes": "",
       "position": {
-        "lat": "17.769612247142653",
-        "lng": "100.63476562500001"
+        "lat": "32.77258868429677",
+        "lng": "71.0581817353007"
       },
-      "id": 73930395
+      "id": "id30"
+    },
+    {
+      "cityName": "Aktyubinskaya Oblast’",
+      "country": "Kazakhstan",
+      "emoji": "KZ",
+      "date": "2023-06-27T07:46:48.779Z",
+      "notes": "",
+      "position": {
+        "lat": "48.548809051487666",
+        "lng": "59.411758724192126"
+      },
+      "id": "id42"
+    },
+    {
+      "cityName": "Changwat Ubon Ratchathani",
+      "country": "Thailand",
+      "emoji": "TH",
+      "date": "2023-06-27T07:58:42.770Z",
+      "notes": "",
+      "position": {
+        "lat": "15.116309346931379",
+        "lng": "105.35888671875"
+      },
+      "id": "id20"
+    },
+    {
+      "cityName": "Rajasthan",
+      "country": "India",
+      "emoji": "IN",
+      "date": "2023-06-27T08:06:56.881Z",
+      "notes": "",
+      "position": {
+        "lat": "28.461665067209093",
+        "lng": "74.20166015625001"
+      },
+      "id": "id24"
+    },
+    {
+      "cityName": "Gia Lai",
+      "country": "Viet Nam",
+      "emoji": "VN",
+      "date": "2023-06-27T08:07:25.256Z",
+      "notes": "",
+      "position": {
+        "lat": "14.118152192123093",
+        "lng": "108.65478515625001"
+      },
+      "id": "id36"
     }
   ]
 }

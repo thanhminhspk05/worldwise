@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import nextId from 'react-id-generator';
 import { useNavigate } from 'react-router-dom';
 import { useCities } from '../contexts/CitiesContext';
 import { useUrlPosition } from '../hooks/useUrlPosition';
@@ -12,7 +13,6 @@ import Button from './Button';
 import styles from './Form.module.css';
 import Message from './Message';
 import Spinner from './Spinner';
-
 const BASE_URL = 'https://api.bigdatacloud.net/data/reverse-geocode-client';
 
 function Form() {
@@ -27,6 +27,7 @@ function Form() {
   const [emoji, setEmoji] = useState(null);
   const [geocodingEror, setGeocodingEror] = useState('');
   const navigate = useNavigate();
+  const id = nextId();
 
   useEffect(() => {
     if (!lat && !lng) return;
@@ -63,6 +64,7 @@ function Form() {
       date,
       notes,
       position: { lat, lng },
+      id,
     };
 
     navigate('/app/cities');
