@@ -53,7 +53,6 @@ const CitiesProvider = ({ children }) => {
         },
       });
       const data = await res.json();
-      console.log(data);
     } catch (err) {
       alert('There was an error loading data...');
     } finally {

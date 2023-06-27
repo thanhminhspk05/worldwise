@@ -14,8 +14,6 @@ function CityItem({ city }) {
     position: { lat, lng },
   } = city;
 
-  console.log('emoji', emoji);
-
   return (
     <li>
       <Link

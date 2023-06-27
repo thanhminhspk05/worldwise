@@ -57,7 +57,7 @@ function Form() {
 
     const newCity = {
       cityName,
-      country,
+      country: countryName,
       emoji,
       date,
       notes,
