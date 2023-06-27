@@ -1,5 +1,4 @@
 import { createContext, useContext, useEffect, useReducer } from 'react';
-import { flagemojiToPNG } from '../utils';
 
 const BASE_URL = 'http://localhost:9000';
 
@@ -18,10 +17,14 @@ const reducer = (state, action) => {
       return { ...state, isLoading: true };
     case 'cities/loaded':
       return { ...state, isLoading: false, cities: action.payload };
+    case 'city/loaded':
+      return { ...state, isLoading: false, currentCity: action.payload };
     case 'cities/created':
-      return { ...state, cities: action.payload };
+      return { ...state, isLoading: false, cities: action.payload };
     case 'cities/deleted':
       return { ...state, currentCity: action.payload };
+    case 'rejected':
+      return { ...state, isLoading: false, error: action.payload };
     default:
       throw new Error('Invalid action');
   }
@@ -32,15 +35,14 @@ const CitiesProvider = ({ children }) => {
   const { cities, isLoading, currentCity } = state;
 
   useEffect(() => {
-    dispatch({ type: 'loading' });
     const fetchCities = async () => {
+      dispatch({ type: 'loading' });
       try {
         const res = await fetch(`${BASE_URL}/cities`);
         const data = await res.json();
-        const newData = data.map((city) => ({ ...city, emoji: flagemojiToPNG(city.emoji) }));
-        dispatch({ type: 'cities/loaded', payload: newData });
+        dispatch({ type: 'cities/loaded', payload: data });
       } catch (err) {
-        alert('There was an error loading data...');
+        dispatch({ type: 'rejected', payload: 'There was an error loading cities...' });
       }
     };
 
@@ -48,22 +50,20 @@ const CitiesProvider = ({ children }) => {
   }, []);
 
   const getCity = async (id) => {
+    dispatch({ type: 'loading' });
     try {
-      dispatch({ type: 'loading' });
       const res = await fetch(`${BASE_URL}/cities/${id}`);
       const data = await res.json();
-      const newData = { ...data, emoji: flagemojiToPNG(data.emoji) };
-      dispatch({ type: 'setCities', payload: newData });
+
+      dispatch({ type: 'city/loaded', payload: data });
     } catch (err) {
-      alert('There was an error loading data...');
-    } finally {
-      dispatch({ type: 'loading' });
+      dispatch({ type: 'rejected', payload: 'There was an error loading city...' });
     }
   };
 
   const createCity = async (newCity) => {
+    dispatch({ type: 'loading' });
     try {
-      dispatch({ type: 'loading' });
       await fetch(`${BASE_URL}/cities`, {
         method: 'POST',
         body: JSON.stringify(newCity),
@@ -72,12 +72,9 @@ const CitiesProvider = ({ children }) => {
         },
       });
 
-      const emojiData = { ...newCity, emoji: flagemojiToPNG(newCity.emoji) };
-      dispatch({ type: 'setCurrentCity', payload: emojiData });
+      dispatch({ type: 'setCurrentCity', payload: newCity });
     } catch (err) {
-      alert('There was an error loading data...');
-    } finally {
-      dispatch({ type: 'loading' });
+      dispatch({ type: 'rejected', payload: 'There was an error loading data...' });
     }
   };
 

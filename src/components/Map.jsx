@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useCities } from '../contexts/CitiesContext';
 import { useGeolocation } from '../hooks/useGeolocation';
 import { useUrlPosition } from '../hooks/useUrlPosition';
+import { flagemojiToPNG } from '../utils';
 import Button from './Button';
 import styles from './Map.module.css';
 
@@ -25,6 +26,7 @@ function Map() {
       setMapPosition([geolocationPosition.lat, geolocationPosition.lng]);
     }
   }, [geolocationPosition]);
+  console.log(cities);
 
   return (
     <div className={styles.mapContainer}>
@@ -52,7 +54,7 @@ function Map() {
             position={[city.position.lat, city.position.lng]}
           >
             <Popup>
-              {city.emoji} {city.cityName}
+              {flagemojiToPNG(city.emoji)} {city.cityName}
             </Popup>
           </Marker>
         ))}
