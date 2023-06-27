@@ -35,6 +35,102 @@
         "lng": 13.376933665713324
       },
       "id": 98443197
+    },
+    {
+      "cityName": "Preah Vihear",
+      "country": "Cambodia",
+      "emoji": "KH",
+      "date": "2023-06-27T02:31:39.225Z",
+      "notes": "",
+      "position": {
+        "lat": "14.00869637063467",
+        "lng": "104.85351562500001"
+      },
+      "id": 98443198
+    },
+    {
+      "cityName": "Vologda Oblast",
+      "country": "Russian Federation (the)",
+      "emoji": "RU",
+      "date": "2023-06-27T02:40:21.410Z",
+      "notes": "",
+      "position": {
+        "lat": "59.5343180010956",
+        "lng": "45.87890625"
+      },
+      "id": 98443199
+    },
+    {
+      "cityName": "Komi",
+      "country": "Russian Federation (the)",
+      "emoji": "RU",
+      "date": "2023-06-27T02:40:54.112Z",
+      "notes": "",
+      "position": {
+        "lat": "64.20637724320852",
+        "lng": "48.955078125"
+      },
+      "id": 98443200
+    },
+    {
+      "cityName": "Đak Lak Province",
+      "country": "Viet Nam",
+      "emoji": "VN",
+      "date": "2023-06-27T02:41:02.217Z",
+      "notes": "",
+      "position": {
+        "lat": "12.790374787613601",
+        "lng": "108.50097656250001"
+      },
+      "id": 98443201
+    },
+    {
+      "cityName": "Kampot",
+      "country": "Cambodia",
+      "emoji": "KH",
+      "date": "2023-06-27T02:41:14.857Z",
+      "notes": "",
+      "position": {
+        "lat": "10.876464994816295",
+        "lng": "104.19433593750001"
+      },
+      "id": 98443202
+    },
+    {
+      "cityName": "Tinh Quang Nam",
+      "country": "Viet Nam",
+      "emoji": "VN",
+      "date": "2023-06-27T02:44:49.001Z",
+      "notes": "",
+      "position": {
+        "lat": "15.792253570362446",
+        "lng": "108.10546875000001"
+      },
+      "id": 98443203
+    },
+    {
+      "cityName": "Tinh Quang Binh",
+      "country": "Viet Nam",
+      "emoji": "VN",
+      "date": "2023-06-27T02:45:13.433Z",
+      "notes": "",
+      "position": {
+        "lat": "17.978733095556183",
+        "lng": "105.97412109375"
+      },
+      "id": 98443204
+    },
+    {
+      "cityName": "Khoueng Savannakhet",
+      "country": "Lao People's Democratic Republic (the)",
+      "emoji": "LA",
+      "date": "2023-06-27T02:46:34.136Z",
+      "notes": "",
+      "position": {
+        "lat": "16.551961721972525",
+        "lng": "105.27099609375"
+      },
+      "id": 98443205
     }
   ]
 }

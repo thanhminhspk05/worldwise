@@ -8,7 +8,7 @@ const formatDate = (date) =>
 const flagemojiToPNG = (flag) => {
   return (
     <img
-      src={`https://flagcdn.com/24x18/${flag.toLowerCase()}.png`}
+      src={`https://flagcdn.com/24x18/${flag?.toLowerCase()}.png`}
       alt="flag"
     />
   );

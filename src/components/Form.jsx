@@ -6,6 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { useNavigate } from 'react-router-dom';
 import { useCities } from '../contexts/CitiesContext';
 import { useUrlPosition } from '../hooks/useUrlPosition';
+import { flagemojiToPNG } from '../utils';
 import BackButton from './BackButton';
 import Button from './Button';
 import styles from './Form.module.css';
@@ -66,7 +67,6 @@ function Form() {
 
     await createCity(newCity);
     navigate('/app/cities');
-    await getCity();
   };
 
   if (isLoadingGeocoding) return <Spinner />;
@@ -87,7 +87,7 @@ function Form() {
           onChange={(e) => setCityName(e.target.value)}
           value={cityName}
         />
-        <span className={styles.flag}>{emoji}</span>
+        <span className={styles.flag}>{flagemojiToPNG(emoji)}</span>
       </div>
 
       <div className={styles.row}>

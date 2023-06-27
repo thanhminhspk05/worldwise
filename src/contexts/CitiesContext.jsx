@@ -53,6 +53,8 @@ const CitiesProvider = ({ children }) => {
         },
       });
       const data = await res.json();
+      const emojiData = { ...newCity, emoji: flagemojiToPNG(data.emoji) };
+      setCities((cities) => [...cities, emojiData]);
     } catch (err) {
       alert('There was an error loading data...');
     } finally {
