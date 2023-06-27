@@ -17,6 +17,7 @@ const CitiesProvider = ({ children }) => {
         const res = await fetch(`${BASE_URL}/cities`);
         const data = await res.json();
         const newData = data.map((city) => ({ ...city, emoji: flagemojiToPNG(city.emoji) }));
+        console.log('cpontext', newData);
         setCities(newData);
       } catch (err) {
         alert('There was an error loading data...');
@@ -34,6 +35,7 @@ const CitiesProvider = ({ children }) => {
       const res = await fetch(`${BASE_URL}/cities/${id}`);
       const data = await res.json();
       const newData = { ...data, emoji: flagemojiToPNG(data.emoji) };
+      console.log(newData);
       setCurrentCity(newData);
     } catch (err) {
       alert('There was an error loading data...');
@@ -42,8 +44,29 @@ const CitiesProvider = ({ children }) => {
     }
   };
 
+  const createCity = async (newCity) => {
+    try {
+      setIsLoading(true);
+      const res = await fetch(`${BASE_URL}/cities`, {
+        method: 'POST',
+        body: JSON.stringify(newCity),
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+      const data = await res.json();
+      console.log(data);
+    } catch (err) {
+      alert('There was an error loading data...');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
-    <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity }}>{children}</CitiesContext.Provider>
+    <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity, createCity }}>
+      {children}
+    </CitiesContext.Provider>
   );
 };
 
