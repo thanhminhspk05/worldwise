@@ -40,7 +40,7 @@ function Form() {
         if (!data.countryCode) throw new Error("That doesn't seem to be a city. Click somewhere else ");
         setCityName(data.principalSubdivision || data.locality || '');
         setCountryName(data.countryName);
-        // setEmoji(flagemojiToPNG(data.countryCode));
+        setEmoji(data.countryCode);
       } catch (err) {
         setGeocodingEror(err.message);
       } finally {
@@ -57,14 +57,12 @@ function Form() {
 
     const newCity = {
       cityName,
-      countryName,
+      country,
       emoji,
       date,
       notes,
       position: { lat, lng },
     };
-
-    console.log(newCity);
 
     await createCity(newCity);
     navigate('/app/cities');
