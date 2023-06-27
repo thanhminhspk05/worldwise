@@ -1,27 +1,47 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useReducer } from 'react';
 import { flagemojiToPNG } from '../utils';
 
 const BASE_URL = 'http://localhost:9000';
 
 const CitiesContext = createContext();
 
+const initialState = {
+  cities: [],
+  isLoading: false,
+  currentCity: {},
+};
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'loading':
+      return { ...state, isLoading: !state.isLoading };
+    case 'setCities':
+      return { ...state, cities: action.payload };
+    case 'setCurrentCity':
+      return { ...state, currentCity: action.payload };
+    case 'deleteCity':
+      return { ...state, cities: state.cities.filter((city) => city.id !== action.payload) };
+    default:
+      return state;
+  }
+};
+
 const CitiesProvider = ({ children }) => {
-  const [cities, setCities] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [currentCity, setCurrentCity] = useState({});
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const { cities, isLoading, currentCity } = state;
 
   useEffect(() => {
     const fetchCities = async () => {
       try {
-        setIsLoading(true);
+        dispatch({ type: 'loading' });
         const res = await fetch(`${BASE_URL}/cities`);
         const data = await res.json();
         const newData = data.map((city) => ({ ...city, emoji: flagemojiToPNG(city.emoji) }));
-        setCities(newData);
+        dispatch({ type: 'setCities', payload: newData });
       } catch (err) {
         alert('There was an error loading data...');
       } finally {
-        setIsLoading(false);
+        dispatch({ type: 'loading' });
       }
     };
 
@@ -30,22 +50,22 @@ const CitiesProvider = ({ children }) => {
 
   const getCity = async (id) => {
     try {
-      setIsLoading(true);
+      dispatch({ type: 'loading' });
       const res = await fetch(`${BASE_URL}/cities/${id}`);
       const data = await res.json();
       const newData = { ...data, emoji: flagemojiToPNG(data.emoji) };
-      setCurrentCity(newData);
+      dispatch({ type: 'setCities', payload: newData });
     } catch (err) {
       alert('There was an error loading data...');
     } finally {
-      setIsLoading(false);
+      dispatch({ type: 'loading' });
     }
   };
 
   const createCity = async (newCity) => {
     try {
-      setIsLoading(true);
-      const res = await fetch(`${BASE_URL}/cities`, {
+      dispatch({ type: 'loading' });
+      await fetch(`${BASE_URL}/cities`, {
         method: 'POST',
         body: JSON.stringify(newCity),
         headers: {
@@ -54,21 +74,20 @@ const CitiesProvider = ({ children }) => {
       });
 
       const emojiData = { ...newCity, emoji: flagemojiToPNG(newCity.emoji) };
-      setCities((cities) => [...cities, emojiData]);
+      dispatch({ type: 'setCurrentCity', payload: emojiData });
     } catch (err) {
       alert('There was an error loading data...');
     } finally {
-      setIsLoading(false);
+      dispatch({ type: 'loading' });
     }
   };
 
   const deleteCity = async (id) => {
     try {
-      const res = await fetch(`${BASE_URL}/cities/${id}`, {
+      await fetch(`${BASE_URL}/cities/${id}`, {
         method: 'DELETE',
       });
-
-      setCities((cities) => cities.filter((city) => city.id !== id));
+      dispatch({ type: 'deleteCity', payload: id });
     } catch (err) {
       alert('There was an error loading data...');
     }
