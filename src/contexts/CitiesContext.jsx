@@ -52,8 +52,8 @@ const CitiesProvider = ({ children }) => {
           'Content-Type': 'application/json',
         },
       });
-      const data = await res.json();
-      const emojiData = { ...newCity, emoji: flagemojiToPNG(data.emoji) };
+
+      const emojiData = { ...newCity, emoji: flagemojiToPNG(newCity.emoji) };
       setCities((cities) => [...cities, emojiData]);
     } catch (err) {
       alert('There was an error loading data...');
@@ -62,8 +62,20 @@ const CitiesProvider = ({ children }) => {
     }
   };
 
+  const deleteCity = async (id) => {
+    try {
+      const res = await fetch(`${BASE_URL}/cities/${id}`, {
+        method: 'DELETE',
+      });
+
+      setCities((cities) => cities.filter((city) => city.id !== id));
+    } catch (err) {
+      alert('There was an error loading data...');
+    }
+  };
+
   return (
-    <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity, createCity }}>
+    <CitiesContext.Provider value={{ cities, isLoading, currentCity, getCity, createCity, deleteCity }}>
       {children}
     </CitiesContext.Provider>
   );
