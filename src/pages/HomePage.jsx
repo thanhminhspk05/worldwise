@@ -2,14 +2,6 @@ import { Link } from 'react-router-dom';
 import PageNav from '../components/PageNav';
 import styles from './Homepage.module.css';
 
-const styledButton = {
-  color: '#242a2e',
-  textDecoration: 'none',
-  backgroundColor: '#00c46a',
-  padding: '0.4rem 1rem',
-  borderRadius: '7px',
-};
-
 export default function Homepage() {
   return (
     <main className={styles.homepage}>

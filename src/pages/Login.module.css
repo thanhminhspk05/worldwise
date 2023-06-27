@@ -24,3 +24,15 @@
   flex-direction: column;
   gap: 0.5rem;
 }
+
+.loginBtn {
+  font-weight: 500;
+  background-color: var(--color-brand--2);
+  color: var(--color-dark--1);
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 0.5rem 1rem;
+  font-size: 24px;
+  border: none;
+  text-align: center;
+}
