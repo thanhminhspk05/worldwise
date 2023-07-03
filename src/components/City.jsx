@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { useCities } from '../contexts/CitiesContext';
 import { flagemojiToPNG, formatDate } from '../utils';
@@ -12,7 +12,7 @@ function City() {
 
   useEffect(() => {
     getCity(id);
-  }, [id]);
+  }, [id, getCity]);
 
   const { cityName, emoji, date, notes } = currentCity;
   console.log(currentCity);
@@ -57,4 +57,4 @@ function City() {
   );
 }
 
-export default City;
+export default memo(City);
